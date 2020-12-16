@@ -1,0 +1,784 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bordtestdev"
+		},
+		"AzurePostgreSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://borddatalakedev.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "7523f8ae-90fd-4f5e-8698-b058c3a208f1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "615a8ff3-54be-40fa-aeca-6dcb7e09debd"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "BordRGDev"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzurePostgreSqlSource"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "AzurePostgreSqlTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Json1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AzurePostgreSqlTable1')]",
+				"[concat(variables('factoryId'), '/datasets/Json1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "arm_template.json",
+						"folderPath": "test"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"$schema": {
+							"type": "string"
+						},
+						"contentVersion": {
+							"type": "string"
+						},
+						"parameters": {
+							"type": "object",
+							"properties": {
+								"factoryName": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"metadata": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordDB_connectionString": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"metadata": {
+											"type": "string"
+										}
+									}
+								},
+								"CloudSQL _Shopify_connectionString": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"metadata": {
+											"type": "string"
+										}
+									}
+								},
+								"BSale_properties_typeProperties_url": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BSaleDLFA_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordBSaleFA_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordDL_properties_typeProperties_dataLakeStoreUri": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordDL_properties_typeProperties_tenant": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordDL_properties_typeProperties_subscriptionId": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordDL_properties_typeProperties_resourceGroupName": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"BordKV_properties_typeProperties_baseUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"Chipax_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"FGetShopifyFiles_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"FPostgres_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"FPsgProdOrd_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"FPsgProdVar_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"FShopifyFA_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"Fshopify_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"SimpliRoute_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"instagram_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"makeUrlFunction_properties_typeProperties_functionAppUrl": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"dataFactory_properties_globalParameters_bordkv_value": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"dataFactory_properties_globalParameters_DatasetRefreshLogicAppUrl_value": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								},
+								"dataFactory_location": {
+									"type": "object",
+									"properties": {
+										"type": {
+											"type": "string"
+										},
+										"defaultValue": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"variables": {
+							"type": "object",
+							"properties": {
+								"factoryId": {
+									"type": "string"
+								}
+							}
+						},
+						"resources": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									},
+									"apiVersion": {
+										"type": "string"
+									},
+									"properties": {
+										"type": "object",
+										"properties": {
+											"activities": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"name": {
+															"type": "string"
+														},
+														"type": {
+															"type": "string"
+														},
+														"dependsOn": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"activity": {
+																		"type": "string"
+																	},
+																	"dependencyConditions": {
+																		"type": "array",
+																		"items": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"userProperties": {
+															"type": "array"
+														},
+														"typeProperties": {
+															"type": "object",
+															"properties": {
+																"expression": {
+																	"type": "object",
+																	"properties": {
+																		"value": {
+																			"type": "string"
+																		},
+																		"type": {
+																			"type": "string"
+																		}
+																	}
+																},
+																"activities": {
+																	"type": "array",
+																	"items": {
+																		"type": "object",
+																		"properties": {
+																			"name": {
+																				"type": "string"
+																			},
+																			"type": {
+																				"type": "string"
+																			},
+																			"dependsOn": {
+																				"type": "array"
+																			},
+																			"policy": {
+																				"type": "object",
+																				"properties": {
+																					"timeout": {
+																						"type": "string"
+																					},
+																					"retry": {
+																						"type": "integer"
+																					},
+																					"retryIntervalInSeconds": {
+																						"type": "integer"
+																					},
+																					"secureOutput": {
+																						"type": "boolean"
+																					},
+																					"secureInput": {
+																						"type": "boolean"
+																					}
+																				}
+																			},
+																			"userProperties": {
+																				"type": "array"
+																			},
+																			"typeProperties": {
+																				"type": "object",
+																				"properties": {
+																					"functionName": {
+																						"type": "string"
+																					},
+																					"method": {
+																						"type": "string"
+																					},
+																					"headers": {
+																						"type": "object",
+																						"properties": {
+																							"link": {
+																								"type": "object",
+																								"properties": {
+																									"value": {
+																										"type": "string"
+																									},
+																									"type": {
+																										"type": "string"
+																									}
+																								}
+																							},
+																							"authorization": {
+																								"type": "object",
+																								"properties": {
+																									"value": {
+																										"type": "string"
+																									},
+																									"type": {
+																										"type": "string"
+																									}
+																								}
+																							},
+																							"shop": {
+																								"type": "object",
+																								"properties": {
+																									"value": {
+																										"type": "string"
+																									},
+																									"type": {
+																										"type": "string"
+																									}
+																								}
+																							},
+																							"token": {
+																								"type": "object",
+																								"properties": {
+																									"value": {
+																										"type": "string"
+																									},
+																									"type": {
+																										"type": "string"
+																									}
+																								}
+																							},
+																							"endpoint": {
+																								"type": "object",
+																								"properties": {
+																									"value": {
+																										"type": "string"
+																									},
+																									"type": {
+																										"type": "string"
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			},
+																			"linkedServiceName": {
+																				"type": "object",
+																				"properties": {
+																					"referenceName": {
+																						"type": "string"
+																					},
+																					"type": {
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	}
+																},
+																"timeout": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											},
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"shop": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"typeCall": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"endpoint": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"dateStart": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															}
+														}
+													},
+													"dateEnd": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															}
+														}
+													},
+													"token": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"dias": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													}
+												}
+											},
+											"variables": {
+												"type": "object",
+												"properties": {
+													"link": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"Authorization": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													},
+													"linkShop": {
+														"type": "object",
+														"properties": {
+															"type": {
+																"type": "string"
+															},
+															"defaultValue": {
+																"type": "string"
+															}
+														}
+													}
+												}
+											},
+											"folder": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string"
+													}
+												}
+											},
+											"annotations": {
+												"type": "array"
+											}
+										}
+									},
+									"dependsOn": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStore1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzurePostgreSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzurePostgreSql1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzurePostgreSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "BSale",
+					"table": "Annulments"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzurePostgreSql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzurePostgreSql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzurePostgreSql",
+				"typeProperties": {
+					"connectionString": "[parameters('AzurePostgreSql1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
