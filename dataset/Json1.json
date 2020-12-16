@@ -1,0 +1,637 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "arm_template.json",
+				"folderPath": "test"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"$schema": {
+					"type": "string"
+				},
+				"contentVersion": {
+					"type": "string"
+				},
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"factoryName": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"metadata": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordDB_connectionString": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"metadata": {
+									"type": "string"
+								}
+							}
+						},
+						"CloudSQL _Shopify_connectionString": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"metadata": {
+									"type": "string"
+								}
+							}
+						},
+						"BSale_properties_typeProperties_url": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BSaleDLFA_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordBSaleFA_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordDL_properties_typeProperties_dataLakeStoreUri": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordDL_properties_typeProperties_tenant": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordDL_properties_typeProperties_subscriptionId": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordDL_properties_typeProperties_resourceGroupName": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"BordKV_properties_typeProperties_baseUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"Chipax_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"FGetShopifyFiles_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"FPostgres_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"FPsgProdOrd_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"FPsgProdVar_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"FShopifyFA_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"Fshopify_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"SimpliRoute_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"instagram_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"makeUrlFunction_properties_typeProperties_functionAppUrl": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"dataFactory_properties_globalParameters_bordkv_value": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"dataFactory_properties_globalParameters_DatasetRefreshLogicAppUrl_value": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						},
+						"dataFactory_location": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"defaultValue": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"variables": {
+					"type": "object",
+					"properties": {
+						"factoryId": {
+							"type": "string"
+						}
+					}
+				},
+				"resources": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							},
+							"apiVersion": {
+								"type": "string"
+							},
+							"properties": {
+								"type": "object",
+								"properties": {
+									"activities": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"type": {
+													"type": "string"
+												},
+												"dependsOn": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"properties": {
+															"activity": {
+																"type": "string"
+															},
+															"dependencyConditions": {
+																"type": "array",
+																"items": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												},
+												"userProperties": {
+													"type": "array"
+												},
+												"typeProperties": {
+													"type": "object",
+													"properties": {
+														"expression": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "string"
+																},
+																"type": {
+																	"type": "string"
+																}
+															}
+														},
+														"activities": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"name": {
+																		"type": "string"
+																	},
+																	"type": {
+																		"type": "string"
+																	},
+																	"dependsOn": {
+																		"type": "array"
+																	},
+																	"policy": {
+																		"type": "object",
+																		"properties": {
+																			"timeout": {
+																				"type": "string"
+																			},
+																			"retry": {
+																				"type": "integer"
+																			},
+																			"retryIntervalInSeconds": {
+																				"type": "integer"
+																			},
+																			"secureOutput": {
+																				"type": "boolean"
+																			},
+																			"secureInput": {
+																				"type": "boolean"
+																			}
+																		}
+																	},
+																	"userProperties": {
+																		"type": "array"
+																	},
+																	"typeProperties": {
+																		"type": "object",
+																		"properties": {
+																			"functionName": {
+																				"type": "string"
+																			},
+																			"method": {
+																				"type": "string"
+																			},
+																			"headers": {
+																				"type": "object",
+																				"properties": {
+																					"link": {
+																						"type": "object",
+																						"properties": {
+																							"value": {
+																								"type": "string"
+																							},
+																							"type": {
+																								"type": "string"
+																							}
+																						}
+																					},
+																					"authorization": {
+																						"type": "object",
+																						"properties": {
+																							"value": {
+																								"type": "string"
+																							},
+																							"type": {
+																								"type": "string"
+																							}
+																						}
+																					},
+																					"shop": {
+																						"type": "object",
+																						"properties": {
+																							"value": {
+																								"type": "string"
+																							},
+																							"type": {
+																								"type": "string"
+																							}
+																						}
+																					},
+																					"token": {
+																						"type": "object",
+																						"properties": {
+																							"value": {
+																								"type": "string"
+																							},
+																							"type": {
+																								"type": "string"
+																							}
+																						}
+																					},
+																					"endpoint": {
+																						"type": "object",
+																						"properties": {
+																							"value": {
+																								"type": "string"
+																							},
+																							"type": {
+																								"type": "string"
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"linkedServiceName": {
+																		"type": "object",
+																		"properties": {
+																			"referenceName": {
+																				"type": "string"
+																			},
+																			"type": {
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															}
+														},
+														"timeout": {
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									},
+									"parameters": {
+										"type": "object",
+										"properties": {
+											"shop": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"typeCall": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"endpoint": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"dateStart": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													}
+												}
+											},
+											"dateEnd": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													}
+												}
+											},
+											"token": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"dias": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											}
+										}
+									},
+									"variables": {
+										"type": "object",
+										"properties": {
+											"link": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"Authorization": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											},
+											"linkShop": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"defaultValue": {
+														"type": "string"
+													}
+												}
+											}
+										}
+									},
+									"folder": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											}
+										}
+									},
+									"annotations": {
+										"type": "array"
+									}
+								}
+							},
+							"dependsOn": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
