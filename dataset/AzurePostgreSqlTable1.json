@@ -7,6 +7,10 @@
 		},
 		"annotations": [],
 		"type": "AzurePostgreSqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "BSale",
+			"table": "Annulments"
+		}
 	}
 }
